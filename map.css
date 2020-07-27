@@ -1,0 +1,12 @@
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1000px;
+    height: 700px;
+}
+
+#form {
+    padding: 2vh;
+    background-color: red;
+}
