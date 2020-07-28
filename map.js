@@ -36,31 +36,31 @@ async function addToMap(d) {
         let link3 = "&key=AIzaSyA2MYUfwXkH6E88_aQ0Eg8sba6V23_1Fdc";
         link = link1 + link2 + link3;
     }
-
-
-
-    let resp;
-    fetch(link)
-        .then((resp) => resp.json()) // Transform the data into json
-
-    .then(function(data) {
-
-        console.log(data);
-
-        // goes through the JSON data from the API to isolate the latitude and longitude to the appropriate variables
-        lat = data["results"][0]["geometry"]["location"]["lat"];
-        lng = data["results"][0]["geometry"]["location"]["lng"];
-
-        console.log(lat, lng);
-
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: lat, lng: lng },
-                zoom: 18
-            });
-        }
-    })
 }
 
 
-addToMap("Eiffel Tower");
+
+// let resp;
+// fetch(link)
+//     .then((resp) => resp.json()) // Transform the data into json
+
+// .then(function(data) {
+
+//     console.log(data);
+
+//     // goes through the JSON data from the API to isolate the latitude and longitude to the appropriate variables
+//     lat = data["results"][0]["geometry"]["location"]["lat"];
+//     lng = data["results"][0]["geometry"]["location"]["lng"];
+
+//     console.log(lat, lng);
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 49, lng: -80 },
+        zoom: 8
+    });
+}
+// })
+// }
+
+// addToMap("Eiffel Tower");
