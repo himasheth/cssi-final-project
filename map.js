@@ -38,8 +38,6 @@ async function addToMap(d) {
     }
 }
 
-
-
 // let resp;
 // fetch(link)
 //     .then((resp) => resp.json()) // Transform the data into json
@@ -54,12 +52,161 @@ async function addToMap(d) {
 
 //     console.log(lat, lng);
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 49, lng: -80 },
-        zoom: 8
-    });
-}
+//location latitude and longitudes
+
+const PARIS_LATLONG = { lat: 48.8566, lng: 2.3522 };
+const TOKYO_LATLONG = { lat: 35.6762, lng: 139.6503 };
+const NEWYORK_LATLONG = { lat: 40.7128, lng: -74.0060 };
+
+// function initMap() {
+//     map = new google.maps.Map(document.getElementById("map"), {
+//         center: NEWYORK_LATLONG,
+//         zoom: 8
+//     });
+
+//     const marker = new google.maps.Marker({
+//         position: NEWYORK_LATLONG,
+//         map,
+//         title: "Click to zoom"
+//     });
+
+//     marker.addListener("click", () => {
+//         map.setZoom(8);
+//         map.setCenter(marker.getPosition());
+//     });
+
+
+//     map.data.loadGeoJson(
+//         'us.json');
+
+
+//     map.data.setStyle({
+//         fillColor: 'green',
+//         strokeWeight: 1
+//     });
+//     marker.addListener("mouseover", () => {
+//         //use the mouse over event handler to highlight the countries when they mouse over them
+//         onmousemove = function(e) { console.log("mouse location:", e.clientX, e.clientY) }
+//     });
+// }
+
+$(function() {
+    {
+        let countries = [];
+
+        let mapOptions = {
+            zoom: 3,
+            center: new google.maps.LatLng(50.7244893, 3.2668189),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            backgroundColor: 'none'
+        };
+
+        let map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        initMap();
+
+        function initMap() {
+            $.ajax({
+                url: 'world.json',
+                dataType: 'json',
+                // default for cache and async is true
+
+                success: function(data) {
+
+                    if (data) {
+
+                        $.each(data, function(id, country) {
+
+                            var countryCoords;
+                            var coordPairs;
+                            var countryBorder;
+
+                            // if there are more than one land masses in the country (i.e. islands)
+                            if ('multi' in country) {
+
+                                var coordArray = [];
+
+                                for (var t in country['xml']['Polygon']) {
+
+                                    //an array to keep track of each land mass
+                                    countryCoords = [];
+
+                                    countryBorder = country['xml']['Polygon'][t]['outerBoundaryIs']['LinearRing']['coordinates'].split(' ');
+
+                                    for (var i in countryBorder) {
+
+                                        coordPairs = countryBorder[i].split(',');
+
+                                        countryCoords.push(new google.maps.LatLng(coordPairs[1], coordPairs[0]));
+                                    }
+
+                                    coordArray.push(countryCoords);
+                                }
+
+                                createCountry(coordArray, country);
+
+                            } else {
+
+                                countryCoords = [];
+
+                                countryBorder = country['xml']['outerBoundaryIs']['LinearRing']['coordinates'].split(' ');
+
+                                for (var j in countryBorder) {
+
+                                    coordPairs = countryBorder[j].split(',');
+
+                                    countryCoords.push(new google.maps.LatLng(coordPairs[1], coordPairs[0]));
+                                }
+
+                                createCountry(countryCoords, country);
+                            }
+                        }.bind(this));
+
+                        showCountries();
+                    }
+                }.bind(this)
+            });
+        }
+
+        function showCountries() {
+            for (var i = 0; i < countries.length; i++) {
+                countries[i].setMap(map);
+
+                // if the user mouses over a country, it will highlight the country yellow
+                google.maps.event.addListener(countries[i], "mouseover", function() {
+                    this.setOptions({ fillColor: "#f5c879", 'fillOpacity': 0.5 });
+                });
+
+                // if the user moves their mouse off of the country the highlight will disappear
+                google.maps.event.addListener(countries[i], "mouseout", function() {
+                    this.setOptions({ fillColor: "#f5c879", 'fillOpacity': 0 });
+                });
+                // if they click on the country it will display the name and code
+                google.maps.event.addListener(countries[i], 'click', function(event) {
+                    alert(this.title + ' (' + this.code + ')');
+                });
+            }
+        }
+
+        function createCountry(coords, country) {
+            var currentCountry = new google.maps.Polygon({
+                paths: coords,
+                strokeColor: 'white',
+                title: country.country,
+                code: country.iso,
+                strokeOpacity: 0,
+                strokeWeight: 2,
+                fillOpacity: 0
+            });
+
+            countries.push(currentCountry);
+        }
+
+    }
+});
+
+
+
 // })
 // }
 
