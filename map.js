@@ -1,94 +1,6 @@
-//variable declaration
-let placeName = [];
-let requests = [];
-let locationToMap = [];
-let markerArray = [];
-let nameMap, response, map, lat, lng, obj, link;
-let addresses = [];
-
-//a function that is called when you want to add something to the map.
-//It's an async function so that the next function waits for the data from the function to be completed before moving on.
-async function addToMap(d) {
-    //println("Add to Map");
-    placeName.unshift(d);
-    nameArray = d.split(" ");
-    //nameArray.join("+");
-    // let newAdd = d.replaceAll(" ", "+");
-    // console.log(newAdd);
-
-    // printArray(nameArray);
-
-    //this part of the function turns the place you want on the map into the form of a URL link
-    let addressString = "";
-    for (i = 0; i < nameArray.length; i++) {
-        addressString += nameArray[i];
-        if (nameArray.length != i + 1)
-            addressString += "+";
-    }
-    addresses.unshift(addressString);
-
-    // //this function takes the URL links of the places that you want mapped and creates HTTP requests to the Google Geocoding API to allow me to get the latitude and longitude of the place
-    // It calls the API for addresses.length times, meaning it loops through all the locations stored in addresses.
-    for (let i = 0; i < addresses.length; i++) {
-        link = "";
-        let link1 = "https://maps.googleapis.com/maps/api/geocode/json?address=";
-        let link2 = addresses[i];
-        let link3 = "&key=AIzaSyA2MYUfwXkH6E88_aQ0Eg8sba6V23_1Fdc";
-        link = link1 + link2 + link3;
-    }
-}
-
-// let resp;
-// fetch(link)
-//     .then((resp) => resp.json()) // Transform the data into json
-
-// .then(function(data) {
-
-//     console.log(data);
-
-//     // goes through the JSON data from the API to isolate the latitude and longitude to the appropriate variables
-//     lat = data["results"][0]["geometry"]["location"]["lat"];
-//     lng = data["results"][0]["geometry"]["location"]["lng"];
-
-//     console.log(lat, lng);
-
-//location latitude and longitudes
-
 const PARIS_LATLONG = { lat: 48.8566, lng: 2.3522 };
 const TOKYO_LATLONG = { lat: 35.6762, lng: 139.6503 };
 const NEWYORK_LATLONG = { lat: 40.7128, lng: -74.0060 };
-
-// function initMap() {
-//     map = new google.maps.Map(document.getElementById("map"), {
-//         center: NEWYORK_LATLONG,
-//         zoom: 8
-//     });
-
-//     const marker = new google.maps.Marker({
-//         position: NEWYORK_LATLONG,
-//         map,
-//         title: "Click to zoom"
-//     });
-
-//     marker.addListener("click", () => {
-//         map.setZoom(8);
-//         map.setCenter(marker.getPosition());
-//     });
-
-
-//     map.data.loadGeoJson(
-//         'us.json');
-
-
-//     map.data.setStyle({
-//         fillColor: 'green',
-//         strokeWeight: 1
-//     });
-//     marker.addListener("mouseover", () => {
-//         //use the mouse over event handler to highlight the countries when they mouse over them
-//         onmousemove = function(e) { console.log("mouse location:", e.clientX, e.clientY) }
-//     });
-// }
 
 $(function() {
     {
@@ -191,8 +103,6 @@ $(function() {
                     if (this.code == "US" || this.code == "FR" || this.code == "JP") {
                         gameStart();
                         this.setOptions({})
-
-
                     }
                 });
             }
@@ -200,18 +110,21 @@ $(function() {
 
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
-
         }
 
         async function gameStart() {
+            // appends the div that creates the "game beginning" text
             let div = document.createElement('div');
             div.className = "game-start";
             div.innerHTML = "<h1 style = 'color:#009912; font-size: 10vh; font-weight: bold; text-align: center; padding-top: 2vh;'> Game Beginning... <h1>";
             document.body.append(div);
-            await sleep(5000);
+            await sleep(1000);
             document.body.removeChild(div);
-            var x = document.getElementById("map");
-            x.style.display = "none";
+
+            // gets the element and uses the built-in jQuery function in order to fade out
+            $('#map').stop().fadeOut('slow');
+
+            // run scenario
             runGame();
         }
 
@@ -234,6 +147,7 @@ $(function() {
 
 function runGame() {
     let div = document.createElement('div');
+    //append the game instead here (iFrame)
     div.innerHTML = "<script src='script.js'></script>"
     document.body.append(div);
 }

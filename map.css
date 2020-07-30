@@ -1,9 +1,7 @@
 #map {
     position: center;
-    margin: 5vh;
-    transform: translate(-50%, -50%);
-    overflow: hidden;
-    transition: top .5s 0s cubic-bezier(.1, 1.2, .3, 1), transform .5s 0s cubic-bezier(.1, 1.2, .3, 1), width .5s .5s cubic-bezier(.1, 1.2, .3, 1), opacity .3s;
+    height: 20vh;
+    width: 10vh;
 }
 
 #form {
@@ -15,4 +13,18 @@
     font-size: 20vh;
     font-weight: bold;
     color: blue;
+}
+
+.bg {
+    background: linear-gradient(to top right, #060628, #1F245A, #682359);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+html {
+    background: linear-gradient(to top right, #060628, #1F245A, #682359);
+    position: fixed;
+    top: 0;
+    left: 0;
 }
