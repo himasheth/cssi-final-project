@@ -168,13 +168,18 @@ $(function() {
             });
         }
 
+
         function showCountries() {
             for (var i = 0; i < countries.length; i++) {
                 countries[i].setMap(map);
 
                 // if the user mouses over a country, it will highlight the country yellow
                 google.maps.event.addListener(countries[i], "mouseover", function() {
-                    this.setOptions({ fillColor: "#f5c879", 'fillOpacity': 0.5 });
+                    if (this.code == "US" || this.code == "FR" || this.code == "JP") {
+                        this.setOptions({ fillColor: "#8B0000", 'fillOpacity': 0.5 });
+                    } else {
+                        this.setOptions({ fillColor: "#f5c879", 'fillOpacity': 0.5 });
+                    }
                 });
 
                 // if the user moves their mouse off of the country the highlight will disappear
@@ -183,9 +188,33 @@ $(function() {
                 });
                 // if they click on the country it will display the name and code
                 google.maps.event.addListener(countries[i], 'click', function(event) {
-                    alert(this.title + ' (' + this.code + ')');
+                    if (this.code == "US" || this.code == "FR" || this.code == "JP") {
+                        gameStart();
+                        this.setOptions({})
+
+
+                    }
                 });
             }
+        }
+
+
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+
+        }
+
+        async function gameStart() {
+            let div = document.createElement('div');
+            div.className = "game-start";
+            div.innerHTML = "<h1 style = 'color:#009912; font-size: 10vh; font-weight: bold; text-align: center; padding-top: 2vh;'> Game Beginning... <h1>";
+            document.body.append(div);
+            await sleep(5000);
+            document.body.removeChild(div);
+
+            var x = document.getElementById("map");
+            x.style.display = "none";
         }
 
         function createCountry(coords, country) {
@@ -201,8 +230,8 @@ $(function() {
 
             countries.push(currentCountry);
         }
-
     }
+
 });
 
 // })
