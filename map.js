@@ -212,7 +212,6 @@ $(function() {
             document.body.append(div);
             await sleep(5000);
             document.body.removeChild(div);
-
             var x = document.getElementById("map");
             x.style.display = "none";
         }
