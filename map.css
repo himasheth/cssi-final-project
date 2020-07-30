@@ -2,22 +2,16 @@
     position: center;
     height: 20vh;
     width: 10vh;
-    opacity: 100;
-}
-
-#form {
-    padding: 2vh;
-    background-color: red;
 }
 
 .game-start {
     font-size: 20vh;
     font-weight: bold;
-    color: blue;
 }
 
 .bg {
-    background: linear-gradient(to top right, #060628, #1F245A, #682359);
+    background: rgb(0, 64, 24);
+    background: linear-gradient(90deg, rgba(0, 64, 24, 1) 0%, rgba(0, 92, 72, 1) 22%, rgba(1, 78, 139, 1) 50%, rgba(3, 145, 237, 1) 70%, rgba(70, 198, 255, 1) 89%, rgba(173, 224, 255, 1) 98%);
     position: fixed;
     top: 0;
     left: 0;
