@@ -198,8 +198,6 @@ $(function() {
             }
         }
 
-
-
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
 
@@ -214,6 +212,7 @@ $(function() {
             document.body.removeChild(div);
             var x = document.getElementById("map");
             x.style.display = "none";
+            runGame();
         }
 
         function createCountry(coords, country) {
@@ -233,7 +232,8 @@ $(function() {
 
 });
 
-// })
-// }
-
-// addToMap("Eiffel Tower");
+function runGame() {
+    let div = document.createElement('div');
+    div.innerHTML = "<script src='script.js'></script>"
+    document.body.append(div);
+}
