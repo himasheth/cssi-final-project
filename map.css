@@ -2,6 +2,7 @@
     position: center;
     height: 20vh;
     width: 10vh;
+    opacity: 100;
 }
 
 #form {
@@ -27,4 +28,11 @@ html {
     position: fixed;
     top: 0;
     left: 0;
+}
+
+button {
+    background-color: #f6b26b;
+    color: #666666;
+    font-size: 1.5vmax;
+    padding: 2vmin 3vmin;
 }

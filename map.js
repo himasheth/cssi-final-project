@@ -17,6 +17,9 @@ $(function() {
 
         initMap();
 
+
+        // MAPPING CODE 
+
         function initMap() {
             $.ajax({
                 url: 'world.json',
