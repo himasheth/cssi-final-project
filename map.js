@@ -2,8 +2,6 @@ const PARIS_LATLONG = { lat: 48.8566, lng: 2.3522 };
 const TOKYO_LATLONG = { lat: 35.6762, lng: 139.6503 };
 const NEWYORK_LATLONG = { lat: 40.7128, lng: -74.0060 };
 
-var json = require('world.json');
-
 $(function() {
     {
         let countries = [];
