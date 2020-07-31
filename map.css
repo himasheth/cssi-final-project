@@ -1,32 +1,87 @@
+html,
+body {
+    background-color: #111111;
+    top: 0;
+    left: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 #map {
-    position: center;
-    height: 20vh;
-    width: 10vh;
+    overflow: hidden;
+    height: 98.5vh;
+    width: 100vh;
+    background-color: #111111;
 }
 
 .game-start {
     font-size: 20vh;
     font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.bg {
-    background: rgb(0, 64, 24);
-    background: linear-gradient(90deg, rgba(0, 64, 24, 1) 0%, rgba(0, 92, 72, 1) 22%, rgba(1, 78, 139, 1) 50%, rgba(3, 145, 237, 1) 70%, rgba(70, 198, 255, 1) 89%, rgba(173, 224, 255, 1) 98%);
-    position: fixed;
-    top: 0;
-    left: 0;
+.game-start {
+    background-color: #111111;
+    color: #009912;
+    font-size: 10vh;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 2vh;
 }
 
-html {
-    background: linear-gradient(to top right, #060628, #1F245A, #682359);
-    position: fixed;
-    top: 0;
-    left: 0;
+.instructions-writing {
+    font-size: 2vh;
+    font-weight: normal;
+    color: #538b93;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-button {
-    background-color: #f6b26b;
-    color: #666666;
-    font-size: 1.5vmax;
-    padding: 2vmin 3vmin;
+.levels {
+    font-size: 2vh;
+    font-weight: normal;
+    color: #9f4141;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.choose-info {
+    font-size: 3vh;
+    font-weight: normal;
+    color: #746855;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.instructions {
+    color: #ffffff;
+    padding-top: 1vh;
+    font-size: 4vh;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.line {
+    margin: 0 auto;
+    width: 20%;
+    height: 1vh;
+    background-color: black;
+    animation: myline 1s ease-in-out infinite alternate;
+}
+
+@keyframes myline {
+    0% {
+        transform: scaleX(0.1);
+        -webkit-transform: scaleX(0.1);
+    }
+    100% {
+        transform: scaleX(2.0);
+        -webkit-transform: scaleX(2.0);
+    }
+}
+
+.load {
+    background-color: #111111;
+    color: white;
+    font-size: 7vh;
+    padding-top: 20%;
+    text-align: center;
+    font-weight: lighter;
+    font-family: 'Courier New', Courier, monospace;
 }

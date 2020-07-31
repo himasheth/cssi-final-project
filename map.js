@@ -10,13 +10,92 @@ $(function() {
             zoom: 3,
             center: new google.maps.LatLng(50.7244893, 3.2668189),
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            backgroundColor: 'none'
+            backgroundColor: 'none',
+            styles: [
+                { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                {
+                    featureType: "administrative.locality",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#d59563" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#d59563" }]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "geometry",
+                    stylers: [{ color: "#263c3f" }]
+                },
+                {
+                    featureType: "poi.park",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#6b9a76" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{ color: "#38414e" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry.stroke",
+                    stylers: [{ color: "#212a37" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#9ca5b3" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry",
+                    stylers: [{ color: "#746855" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "geometry.stroke",
+                    stylers: [{ color: "#1f2835" }]
+                },
+                {
+                    featureType: "road.highway",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#f3d19c" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{ color: "#2f3948" }]
+                },
+                {
+                    featureType: "transit.station",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#d59563" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{ color: "#17263c" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "labels.text.fill",
+                    stylers: [{ color: "#515c6d" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "labels.text.stroke",
+                    stylers: [{ color: "#17263c" }]
+                }
+            ]
         };
 
         let map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         initMap();
-
 
         // MAPPING CODE 
 
@@ -116,16 +195,21 @@ $(function() {
         }
 
         async function gameStart() {
-            // appends the div that creates the "game beginning" text
-            let div = document.createElement('div');
-            div.className = "game-start";
-            div.innerHTML = "<h1 style = 'color:#009912; font-size: 10vh; font-weight: bold; text-align: center; padding-top: 2vh;'> Game Beginning... <h1>";
-            document.body.append(div);
-            await sleep(1000);
-            document.body.removeChild(div);
 
             // gets the element and uses the built-in jQuery function in order to fade out
             $('#map').stop().fadeOut('slow');
+            $('#instructions').stop().fadeOut('slow');
+
+            // appends the div that creates the "game beginning" text
+            let div = document.createElement('div');
+            div.className = "line";
+            let load = document.createElement('div');
+            load.className = "load";
+            load.innerHTML = "Game Loading..."
+            document.body.append(div, load);
+            await sleep(5000);
+            document.body.removeChild(div);
+            document.body.removeChild(load);
 
             // run scenario
             runGame();

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="map.css" />
+
 
 <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-    <link rel="stylesheet" src="map.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
@@ -14,9 +15,29 @@
     <title>Mapping App</title>
 
 </head>
+<div class="fluid-container">
 
+    <body>
+        <div class="row">
+            <div id="map" class="col-7">
+                <script id="map" src="map.js"></script>
+            </div>
+            <div id="instructions" class="col-5 instructions" style="background-color: #111111; padding: 5vh;">
+                Instructions
+                <div class="instructions-writing">
+                    Use the arrow keys or the W,A,S,D keys to move around! Careful - if you get hit once, it's game over so watch out!
+                </div>
+                <div class="choose-info">
+                    <br><br>
+                    <h2> Click on the country you want to play in!</h2>
+                    <div class="levels">
 
-<div class="row">
-    <div id="map" class="col-12 " style="width: 500px; height: 800px;"></div>
-    <script src="game.js"></script>
+                        <br> Level 1: Paris <br><br> Level 2: New York <br><br> Level 3: Tokyo <br><br><br>
+                        <div style="color: #c9c9c9">If the country does not turn red when you hover over it, you can't play there!</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
 </div>
