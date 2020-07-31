@@ -223,7 +223,6 @@ $(function() {
                 location.replace("japan.html")
             }
 
-
             runGame();
         }
 
