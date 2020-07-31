@@ -1,6 +1,6 @@
 html,
 body {
-    background: linear-gradient(to top right, #060628, #1F245A, #682359);
+    background: linear-gradient(to top right, #000000, #2e0108, #682323);
     overflow: hidden;
     left: 0;
     position: fixed;
@@ -33,19 +33,19 @@ button {
 }
 
 .button:hover {
-    background-color: #800f4f;
+    background-color: #800f0f;
     box-shadow: 0px 15px 20px rgba(6, 16, 102, 0.4);
     color: #fff;
     transform: translateY(-7px);
 }
 
 .sign {
-    padding-top: 5vh;
+    padding-top: 25vh;
     letter-spacing: 4;
     text-transform: uppercase;
     font-size: 10em;
-    color: #ffe6ff;
-    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd, -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+    color: #ffe6e6;
+    text-shadow: 0 0 0.6rem #ffe6e6, 0 0 1.5rem #f53100, -0.2rem 0.1rem 1rem #fa4444, 0.2rem 0.1rem 1rem #ff6565, 0 -0.5rem 2rem #ff2424, 0 0.5rem 3rem #ff2424;
     animation: shine 2s forwards, flicker 3s infinite;
 }
 
@@ -54,17 +54,17 @@ button {
     22%,
     36%,
     75% {
-        color: #ffe6ff;
-        text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd, -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+        color: #ffe6e6;
+        text-shadow: 0 0 0.6rem #ffe6e6, 0 0 1.5rem #f53100, -0.2rem 0.1rem 1rem #ff6565, 0.2rem 0.1rem 1rem #ff6565, 0 -0.5rem 2rem #ff2424, 0 0.5rem 3rem #ff2424;
     }
     28%,
     33% {
-        color: #ff65bd;
+        color: #f53100;
         text-shadow: none;
     }
     82%,
     97% {
-        color: #ff2483;
+        color: #ff2424;
         text-shadow: none;
     }
 }
@@ -79,12 +79,12 @@ button {
 
 @keyframes shine {
     0% {
-        color: #6b1839;
+        color: #6b1818;
         text-shadow: none;
     }
     100% {
         color: #ffe6ff;
-        text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd, -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd, 0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+        text-shadow: 0 0 0.6rem #ffe6e6, 0 0 1.5rem #ff6565, -0.2rem 0.1rem 1rem #ff6565, 0.2rem 0.1rem 1rem #ff6565, 0 -0.5rem 2rem #ff2424, 0 0.5rem 3rem #ff2424;
     }
 }
 

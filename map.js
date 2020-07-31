@@ -183,7 +183,7 @@ $(function() {
                 // if they click on the country it will display the name and code
                 google.maps.event.addListener(countries[i], 'click', function(event) {
                     if (this.code == "US" || this.code == "FR" || this.code == "JP") {
-                        gameStart();
+                        gameStart(this.code);
                         this.setOptions({})
                     }
                 });
@@ -194,7 +194,7 @@ $(function() {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
 
-        async function gameStart() {
+        async function gameStart(country) {
 
             // gets the element and uses the built-in jQuery function in order to fade out
             $('#map').stop().fadeOut('slow');
@@ -211,8 +211,26 @@ $(function() {
             document.body.removeChild(div);
             document.body.removeChild(load);
 
-            // run scenario
+
+            // choose which game to run based on the country they selected
+            if (country == "US") {
+                location.replace("us.html")
+                console.log("US");
+            } else if (country == "FR") {
+                location.replace("paris.html")
+                console.log("FR");
+            } else if (country == "JP") {
+                location.replace("japan.html")
+            }
+
+
             runGame();
+        }
+
+        function loadMap() {
+            $('#map').stop().fadeIn('slow');
+            $('#instructions').stop().fadeIn('slow');
+
         }
 
         function createCountry(coords, country) {
