@@ -100,6 +100,45 @@ $(function() {
         // MAPPING CODE 
 
         function initMap() {
+
+            var usa = new google.maps.Marker({
+                position: NEWYORK_LATLONG,
+                map,
+                title: "New York"
+            });
+
+
+            usa.addListener("click", function(event) {
+                gameStart("US");
+                this.setOptions({})
+
+            });
+
+            var japan = new google.maps.Marker({
+                position: TOKYO_LATLONG,
+                map,
+                title: "Tokyo"
+            });
+
+            japan.addListener("click", function(event) {
+                gameStart("JP");
+                this.setOptions({})
+
+            });
+
+            var france = new google.maps.Marker({
+                position: PARIS_LATLONG,
+                map,
+                title: "Paris"
+            });
+
+
+            france.addListener("click", function(event) {
+                gameStart("FR");
+                this.setOptions({})
+
+            });
+
             $.ajax({
                 url: 'world.json',
                 dataType: 'json',
@@ -248,10 +287,3 @@ $(function() {
     }
 
 });
-
-function runGame() {
-    let div = document.createElement('div');
-    //append the game instead here (iFrame)
-    div.innerHTML = "<script src='script.js'></script>"
-    document.body.append(div);
-}
